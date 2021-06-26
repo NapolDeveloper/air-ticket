@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 // import { Link } from 'react-router-dom';
+
+// components
+import InputComponent from './InputBox';
 
 // styles
 import Colors from '../../styles/Colors';
@@ -44,8 +47,10 @@ const LoginRightBox = () => {
         <S.Title>Sign in</S.Title>
         <S.InputWrap>
           {/* input 컴포넌트화 시켜서 재사용하기 - 아직 미완 */}
-          <S.SignInput name='email' placeholder='Email' value={email} onChange={setText}></S.SignInput>
-          <S.SignInput name='password' placeholder='Password' type='password' value={password} onChange={setText}></S.SignInput>
+          {/* <S.SignInput name='email' placeholder='Email' value={email} onChange={setText}></S.SignInput> */}
+          {/* <S.SignInput name='password' placeholder='Password' type='password' value={password} onChange={setText}></S.SignInput> */}
+          <InputComponent name='email' placeholder='Email' value={email} onChange={setText}></InputComponent>
+          <InputComponent name='password' placeholder='Password' type='password' value={password} onChange={setText}></InputComponent>
         </S.InputWrap>
         <S.ForgotPassword>Forgot your password?</S.ForgotPassword>
         <S.SignInButton onClick={handleSignIn}>sign in</S.SignInButton>
@@ -68,7 +73,11 @@ const SignUpRightBox = () => {
   const handleCheckId = () => {
     // 영문 대문자 또는 소문자 또는 숫자로 시작하는 아이디, 길이는 5~15자, 끝날때 영문 대문자 또는 소문자 또는 숫자
     const idReg = /^[A-za-z0-9]{5,15}$/g;
-    if (!idReg.test(id) || id === '') {
+    if (!idReg.test(id)) {
+      setSignDes('아이디를 5~15자의 영문으로 작성해주세요');
+      console.log(id);
+      return false;
+    } else if (id.length < 1) {
       setSignDes('아이디를 입력해주세요');
       return false;
     }
@@ -184,6 +193,7 @@ const SignUpRightBox = () => {
     // 가입 성공시 초기화
     inputReset();
     setSignDes('');
+    console.log(userData);
   };
 
   return (
@@ -191,10 +201,10 @@ const SignUpRightBox = () => {
       <S.BoxWrap>
         <S.Title>Sign up</S.Title>
         <S.InputWrap>
-          <S.SignInput name='id' placeholder='Your id' type='text' value={id} onChange={setText}></S.SignInput>
-          <S.SignInput name='password' placeholder='Password' type='password' value={password} onChange={setText}></S.SignInput>
-          <S.SignInput name='passwordCheck' placeholder='Password check' type='password' value={passwordCheck} onChange={setText}></S.SignInput>
-          <S.SignInput name='name' placeholder='name' type='text' value={name} onChange={setText}></S.SignInput>
+          <InputComponent name='id' placeholder='Your id' type='text' value={id} onChange={setText}></InputComponent>
+          <InputComponent name='password' placeholder='Password' type='password' value={password} onChange={setText}></InputComponent>
+          <InputComponent name='passwordCheck' placeholder='Password check' type='password' value={passwordCheck} onChange={setText}></InputComponent>
+          <InputComponent name='name' placeholder='name' type='text' value={name} onChange={setText}></InputComponent>
         </S.InputWrap>
         <S.Description color={Colors.primaryColor}>{signDes}</S.Description>
         <S.SignInButton onClick={handleSignUp}>sign up</S.SignInButton>
