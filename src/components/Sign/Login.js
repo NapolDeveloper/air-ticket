@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 
 // components
 import InputComponent from './InputBox';
+import Modal from '../Modal/Modal';
 
 // styles
 import Colors from '../../styles/Colors';
@@ -14,12 +15,20 @@ import useInput from '../../hooks/useInput';
 const Login = () => {
   // signUp, signIn Toggle State
   const [toggleSign, setToggleSign] = useState(false);
+  const [toggleModal, setToggleModal] = useState(false);
   return (
-    <S.LoginContainer>
-      <LoginLeftBox toggleSign={toggleSign} setToggleSign={setToggleSign} />
-      {/* active - slideUp animation check props */}
-      {toggleSign ? <SignUpRightBox active /> : <LoginRightBox active />}
-    </S.LoginContainer>
+    <div>
+      <S.LoginContainer>
+        <LoginLeftBox toggleSign={toggleSign} setToggleSign={setToggleSign} />
+        {/* active - slideUp animation check props */}
+        {toggleSign ? <SignUpRightBox active setToggleModal={setToggleModal} /> : <LoginRightBox active />}
+      </S.LoginContainer>
+      {toggleModal ? (
+        <Modal title='가입에 성공했습니다' confirmText='확인' cancelText='닫기' setToggle={setToggleModal}>
+          Air Ticket과 함께 편안한 여행 되세요!
+        </Modal>
+      ) : null}
+    </div>
   );
 };
 
@@ -46,9 +55,6 @@ const LoginRightBox = () => {
       <S.BoxWrap>
         <S.Title>Sign in</S.Title>
         <S.InputWrap>
-          {/* input 컴포넌트화 시켜서 재사용하기 - 아직 미완 */}
-          {/* <S.SignInput name='email' placeholder='Email' value={email} onChange={setText}></S.SignInput> */}
-          {/* <S.SignInput name='password' placeholder='Password' type='password' value={password} onChange={setText}></S.SignInput> */}
           <InputComponent name='email' placeholder='Email' value={email} onChange={setText}></InputComponent>
           <InputComponent name='password' placeholder='Password' type='password' value={password} onChange={setText}></InputComponent>
         </S.InputWrap>
@@ -59,7 +65,7 @@ const LoginRightBox = () => {
   );
 };
 
-const SignUpRightBox = () => {
+const SignUpRightBox = (props) => {
   const [{ id, password, passwordCheck, name }, setText, inputReset] = useInput({ id: '', password: '', passwordCheck: '', name: '' });
   // 임의로 지정해둔 유저 데이터 저장 포멧
   const [signDes, setSignDes] = useState('');
@@ -181,19 +187,20 @@ const SignUpRightBox = () => {
 
   // Sign up 버튼 클릭시 실행
   const handleSignUp = () => {
+    const { setToggleModal } = props;
     if (handleCheckId() === false) return;
 
     if (handleCheckPassword() === false) return;
 
     if (handleCheckName() === false) return;
 
+    // 아래 데이터를 서버로 전송할 예정 - 여권번호 추가예정, 비밀번호는 암호화 시킬 예정
     setUserData({ id, password, name });
 
-    // 위에서 return을 사용하여 모두 성립하지 않으면 inputReset() 실행되지 않음
-    // 가입 성공시 초기화
+    // 가입 성공시 input, SignDes 초기화
     inputReset();
     setSignDes('');
-    console.log(userData);
+    setToggleModal(true);
   };
 
   return (

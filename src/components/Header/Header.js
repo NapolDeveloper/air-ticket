@@ -4,7 +4,6 @@ import React from 'react';
 import HeaderMenu from './HeaderMenu';
 
 // styles
-import Colors from '../../styles/Colors';
 import styled from 'styled-components';
 
 const HeaderWrap = styled.div`
