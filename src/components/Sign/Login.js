@@ -79,7 +79,6 @@ const SignUpRightBox = () => {
   const handleCheckPassword = () => {
     // 비밀번호, 비밀번호 확인
     if (checkPwMatch() === false) {
-      setSignDes('비밀번호가 동일하지 않습니다');
       return false;
     }
     let passwordStrengthCount = 0;
@@ -100,8 +99,11 @@ const SignUpRightBox = () => {
 
   // 비밀번호, 비밀번호 확인 두 개 동일한지 체크
   const checkPwMatch = () => {
-    if (password !== passwordCheck || password === '') {
-      console.error('pw - 비밀번호 확인 조건안맞음');
+    if (password !== passwordCheck) {
+      setSignDes('비밀번호가 동일하지 않습니다');
+      return false;
+    } else if (password === '') {
+      setSignDes('비밀번호를 입력해주세요');
       return false;
     }
     return true;
@@ -179,9 +181,9 @@ const SignUpRightBox = () => {
     setUserData({ id, password, name });
 
     // 위에서 return을 사용하여 모두 성립하지 않으면 inputReset() 실행되지 않음
-
+    // 가입 성공시 초기화
     inputReset();
-    // setPwLevel(0);
+    setSignDes('');
   };
 
   return (
