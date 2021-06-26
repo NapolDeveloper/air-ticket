@@ -17,16 +17,17 @@ const HeaderWrap = styled.div`
   /* background-color: #efefef; */
 `;
 
-const HeaderLogo = styled.div`
-  width: 30px;
-  height: 30px;
-  background-color: red;
+const HeaderLogo = styled.span`
+  font-weight: bold;
+  /* width: 30px; */
+  /* height: 30px; */
+  /* background-color: red; */
 `;
 
 const Header = () => {
   return (
     <HeaderWrap>
-      <HeaderLogo />
+      <HeaderLogo>AIR-TICKET</HeaderLogo>
       <HeaderMenu />
     </HeaderWrap>
   );
