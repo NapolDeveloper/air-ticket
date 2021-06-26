@@ -1,5 +1,17 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Colors from '../../styles/Colors';
+
+// animation
+export const slideUp = keyframes`
+  from {
+    transform: translateY(200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+`;
 
 export const LoginContainer = styled.div`
   display: flex;
@@ -15,6 +27,19 @@ export const LoginContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+`;
+
+// Box
+export const BoxWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  animation-duration: 0.65s;
+  animation-timing-function: ease-out;
+  animation-name: ${slideUp};
+  animation-fill-mode: forwards;
 `;
 export const Box = styled.div`
   display: flex;
@@ -51,6 +76,7 @@ export const Title = styled.span`
 `;
 export const Description = styled.span`
   /* margin: 20px 0 10px 0; */
+  font-weight: ${(props) => (props.bold ? props.bold : 500)};
   color: ${(props) => (props.color ? props.color : Colors.colorBlack)};
 `;
 
