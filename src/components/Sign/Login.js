@@ -79,14 +79,15 @@ const SignUpRightBox = (props) => {
   const handleCheckId = () => {
     // 영문 대문자 또는 소문자 또는 숫자로 시작하는 아이디, 길이는 5~15자, 끝날때 영문 대문자 또는 소문자 또는 숫자
     const idReg = /^[A-za-z0-9]{5,15}$/g;
-    if (!idReg.test(id)) {
-      setSignDes('아이디를 5~15자의 영문으로 작성해주세요');
-      console.log(id);
-      return false;
-    } else if (id.length < 1) {
+    if (id === '') {
       setSignDes('아이디를 입력해주세요');
       return false;
+    } else if (!idReg.test(id)) {
+      setSignDes('아이디를 5~15자의 영문으로 작성해주세요');
+      console.log(id.typeof);
+      return false;
     }
+
     return true;
   };
 
@@ -114,11 +115,11 @@ const SignUpRightBox = (props) => {
 
   // 비밀번호, 비밀번호 확인 두 개 동일한지 체크
   const checkPwMatch = () => {
-    if (password !== passwordCheck) {
-      setSignDes('비밀번호가 동일하지 않습니다');
-      return false;
-    } else if (password === '') {
+    if (password === '') {
       setSignDes('비밀번호를 입력해주세요');
+      return false;
+    } else if (password !== passwordCheck) {
+      setSignDes('비밀번호가 동일하지 않습니다');
       return false;
     }
     return true;
@@ -178,8 +179,11 @@ const SignUpRightBox = (props) => {
   // 이름 정규표현식 검사
   const handleCheckName = () => {
     const nameReg = /^[가-힣]{1,10}$/;
-    if (!nameReg.test(name) || name === '') {
+    if (name === '') {
       setSignDes('이름을 입력해주세요');
+      return false;
+    } else if (!nameReg.test(name)) {
+      setSignDes('이름을 1~10자의 한글로 작성해주세요');
       return false;
     }
     return true;

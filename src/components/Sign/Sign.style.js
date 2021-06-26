@@ -121,12 +121,17 @@ export const SignButton = styled.button`
   cursor: pointer;
   margin-top: 20px;
 `;
-export const SignInButton = styled(SignButton)``;
+export const SignInButton = styled(SignButton)`
+  transition: 0.2s ease-in-out;
+  &:hover {
+    background-color: ${lighten(0.1, Colors.primaryColor)};
+  }
+`;
 
 export const SignUpButton = styled(SignButton)`
   background-color: transparent;
   border: 1px solid ${Colors.colorWhite};
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
   &:hover {
     background-color: ${Colors.colorWhite};
     color: ${Colors.primaryColor};

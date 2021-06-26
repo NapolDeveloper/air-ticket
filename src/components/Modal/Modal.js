@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // styles
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Colors from '../../styles/Colors';
-import { darken, lighten } from 'polished';
+import { lighten } from 'polished';
+
+const slideUp = keyframes`
+  from {
+    transform: translateY(200px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+`;
 
 const DarkBackground = styled.div`
   position: fixed;
@@ -18,10 +27,10 @@ const DarkBackground = styled.div`
 `;
 
 const ModalBlock = styled.div`
-  width: 320px;
-  padding: 1.5rem;
+  width: 420px;
+  padding: 2rem;
   background: white;
-  border-radius: 2px;
+  border-radius: 4px;
   h3 {
     margin: 0;
     font-size: 1.5rem;
@@ -29,10 +38,14 @@ const ModalBlock = styled.div`
   p {
     font-size: 1.125rem;
   }
+  animation-duration: 0.25s;
+  animation-timing-function: ease-out;
+  animation-name: ${slideUp};
+  animation-fill-mode: forwards;
 `;
 
 const Title = styled.h3`
-  margin-bottom: 10px;
+  margin-top: 10px;
 `;
 
 const ButtonGroup = styled.div`
@@ -48,7 +61,7 @@ const Button = styled.button`
   color: white;
   font-weight: bold;
   margin-left: 10px;
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
   cursor: pointer;
   &:hover {
     background-color: ${(props) => (props.color ? lighten(0.1, `${props.color}`) : lighten(0.1, Colors.primaryColor))};
@@ -56,8 +69,6 @@ const Button = styled.button`
 `;
 
 const Modal = ({ title, children, confirmText, cancelText, setToggle }) => {
-  // const [modalToggle, setModalToggle] = useState(false);
-
   const onConfirm = () => {
     setToggle(false);
   };
