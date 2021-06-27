@@ -1,22 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { open, close, selectIsOpen } from '../../redux/Sidebar/sidebarSlice';
 
 // styles
 import styled from 'styled-components';
 import Colors from '../../styles/Colors';
-import { lighten } from 'polished';
+import { lighten, darken } from 'polished';
+import { BsPeopleCircle } from 'react-icons/bs';
 
 const NavBar = styled.div`
   height: 100% !important;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 0;
+  border-radius: 0 10px 10px 0;
   position: absolute;
   top: 0;
   /* border-color: ${Colors.primaryColor}; */
-  padding: 40px 0;
+  padding: 40px 10px;
   /* background-color: ${Colors.colorBlack}; */
-  background-color: ${Colors.colorWhite};
+  background-color: ${Colors.colorSideBar};
   transition: 0.8s ease;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07), 0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07), 0 16px 32px rgba(0, 0, 0, 0.07),
     0 32px 64px rgba(0, 0, 0, 0.07);
@@ -41,30 +45,62 @@ const ToggleButton = styled.button`
   }
 `;
 
+// UserProfile style
 const UserDataWrap = styled.div`
-  width: 200px;
+  width: 100%;
   height: 100px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  align-items: center;
   background-color: ${Colors.colorGrey};
+  margin-bottom: 30px;
+  padding: 10px 30px;
 `;
 
-const Content = styled.div`
-  margin-left: 20px;
+const UserData = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 500;
+`;
+const UserDes = styled.span`
+  color: white;
+`;
+
+const SidebarMenuWrap = styled.div`
+  width: 100%;
+  border-radius: 10px;
+  padding: 15px 7px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  margin-bottom: 10px;
+  color: ${Colors.colorBlack};
+  &:hover {
+    background-color: ${darken(0.1, Colors.colorSideBar)};
+  }
 `;
 
 const Sidebar = ({ width, height }) => {
   const [xPosition, setX] = React.useState(-width);
 
+  const isOpen = useSelector(selectIsOpen);
+  const dispatch = useDispatch();
+
   const toggleMenu = () => {
-    if (xPosition < 0) {
+    if (isOpen === false) {
+      dispatch(open());
       setX(0);
     } else {
+      dispatch(close());
       setX(-width);
     }
   };
 
   React.useEffect(() => {
-    setX(-width);
-    console.log(xPosition);
+    setX(-width); // 이게 닫혀있는 상태
+    // setX(width);
   }, []);
 
   return (
@@ -77,8 +113,11 @@ const Sidebar = ({ width, height }) => {
         }}
       >
         <UserProfile />
-        <Content>Test</Content>
-        <Content>Test</Content>
+        <SidebarMenu>Home</SidebarMenu>
+        <SidebarMenu>TEST</SidebarMenu>
+        <SidebarMenu>TEST</SidebarMenu>
+        <SidebarMenu>TEST</SidebarMenu>
+        <SidebarMenu>TEST</SidebarMenu>
       </NavBar>
       <ToggleButton
         onClick={() => toggleMenu()}
@@ -92,7 +131,27 @@ const Sidebar = ({ width, height }) => {
 };
 
 const UserProfile = () => {
-  return <UserDataWrap></UserDataWrap>;
+  return (
+    <UserDataWrap>
+      {/* <UserIcon> */}
+      <BsPeopleCircle style={{ color: `${Colors.colorWhite}`, fontSize: `36px` }} />
+      {/* </UserIcon> */}
+      {/* 후에 전역으로 유저의 데이터를 받아와서 넣어줄 예정 */}
+      <UserData>
+        <UserDes>Name : 김현재</UserDes>
+      </UserData>
+    </UserDataWrap>
+  );
+};
+
+const SidebarMenu = ({ children }) => {
+  return (
+    <SidebarMenuWrap>
+      <Link to={'/'} style={{ color: `${Colors.colorBlack}` }}>
+        {children}
+      </Link>
+    </SidebarMenuWrap>
+  );
 };
 
 export default Sidebar;
