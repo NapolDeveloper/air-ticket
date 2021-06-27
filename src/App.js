@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 // components
 import Header from './components/Header/Header';
+import Sidebar from './components/Sidebar/Sidebar';
 
 // components - Sign
 import Login from './components/Sign/Login';
@@ -12,10 +13,6 @@ import Login from './components/Sign/Login';
 import GlobalStyle from './styles/GlobalStyle';
 
 const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   width: 100%;
   height: 100%;
 `;
@@ -23,16 +20,17 @@ const Container = styled.div`
 function App() {
   return (
     <Fragment>
-      <Router>
-        <GlobalStyle />
-        <Header />
-        <Container>
+      <Container>
+        <Router>
+          <GlobalStyle />
+          <Header />
+          <Sidebar width={300} heigth={'100vh'} />
           <Switch>
             {/* 로그인, 회원가입 */}
             <Route exact path='/login' render={() => <Login />} />
           </Switch>
-        </Container>
-      </Router>
+        </Router>
+      </Container>
     </Fragment>
   );
 }
