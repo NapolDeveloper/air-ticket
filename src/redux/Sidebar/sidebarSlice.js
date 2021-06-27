@@ -8,11 +8,9 @@ export const slice = createSlice({
   reducers: {
     open: (state) => {
       state.isOpen = true;
-      console.log('redux - open');
     },
     close: (state) => {
       state.isOpen = false;
-      console.log('redux - close');
     }
   }
 });
