@@ -40,6 +40,7 @@ const ToggleButton = styled.button`
   border-left: 0;
   cursor: pointer;
   transition: 0.8s ease;
+  transform: ${(props) => `translate(${props.xPosition + 300}px, 30vh)`};
   &:hover {
     background-color: ${lighten(0.1, Colors.primaryColor)};
   }
@@ -119,13 +120,7 @@ const Sidebar = ({ width, height }) => {
         <SidebarMenu>TEST</SidebarMenu>
         <SidebarMenu>TEST</SidebarMenu>
       </NavBar>
-      <ToggleButton
-        onClick={() => toggleMenu()}
-        className='toggle-menu'
-        style={{
-          transform: `translate(${xPosition + 300}px, 30vh)`
-        }}
-      />
+      <ToggleButton onClick={() => toggleMenu()} className='toggle-menu' xPosition={xPosition} />
     </React.Fragment>
   );
 };
@@ -136,7 +131,7 @@ const UserProfile = () => {
       {/* <UserIcon> */}
       <BsPeopleCircle style={{ color: `${Colors.colorWhite}`, fontSize: `36px` }} />
       {/* </UserIcon> */}
-      {/* 후에 전역으로 유저의 데이터를 받아와서 넣어줄 예정 */}
+      {/* 후에 리덕스에서 유저의 데이터를 받아와서 넣어줄 예정 */}
       <UserData>
         <UserDes>Name : 김현재</UserDes>
       </UserData>

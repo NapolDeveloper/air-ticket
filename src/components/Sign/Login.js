@@ -43,7 +43,7 @@ const LoginLeftBox = ({ toggleSign, setToggleSign }) => {
 };
 
 const LoginRightBox = () => {
-  const [{ email, password }, setText, inputReset] = useInput({ email: '', password: '' });
+  const [{ id, password }, setText, inputReset] = useInput({ id: '', password: '' });
 
   // Sign in 버튼 클릭시 이벤트. <데이터베이스랑 아이디 대조 기능 필요>
   const handleSignIn = () => {
@@ -55,7 +55,7 @@ const LoginRightBox = () => {
       <S.BoxWrap>
         <S.Title>Sign in</S.Title>
         <S.InputWrap>
-          <InputComponent name='email' placeholder='Email' value={email} onChange={setText}></InputComponent>
+          <InputComponent name='id' placeholder='ID' value={id} onChange={setText}></InputComponent>
           <InputComponent name='password' placeholder='Password' type='password' value={password} onChange={setText}></InputComponent>
         </S.InputWrap>
         <S.ForgotPassword>Forgot your password?</S.ForgotPassword>
@@ -210,12 +210,12 @@ const SignUpRightBox = (props) => {
   return (
     <S.RightBox>
       <S.BoxWrap>
-        <S.Title>Sign up</S.Title>
+        <S.Title>Create Account</S.Title>
         <S.InputWrap>
-          <InputComponent name='id' placeholder='Your id' type='text' value={id} onChange={setText}></InputComponent>
+          <InputComponent name='id' placeholder='ID' type='text' value={id} onChange={setText}></InputComponent>
           <InputComponent name='password' placeholder='Password' type='password' value={password} onChange={setText}></InputComponent>
-          <InputComponent name='passwordCheck' placeholder='Password check' type='password' value={passwordCheck} onChange={setText}></InputComponent>
-          <InputComponent name='name' placeholder='name' type='text' value={name} onChange={setText}></InputComponent>
+          <InputComponent name='passwordCheck' placeholder='Confirm Password' type='password' value={passwordCheck} onChange={setText}></InputComponent>
+          <InputComponent name='name' placeholder='Name' type='text' value={name} onChange={setText}></InputComponent>
         </S.InputWrap>
         <S.Description color={Colors.primaryColor}>{signDes}</S.Description>
         <S.SignInButton onClick={handleSignUp}>sign up</S.SignInButton>
