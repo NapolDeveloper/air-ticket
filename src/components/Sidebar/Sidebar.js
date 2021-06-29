@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { open, close, selectIsOpen } from '../../redux/Sidebar/sidebarSlice';
 
@@ -78,10 +78,15 @@ const SidebarMenuWrap = styled.div`
   cursor: pointer;
   margin-bottom: 10px;
   color: ${Colors.colorBlack};
+  background-color: ${(props) => (props.active ? `${darken(0.1, Colors.colorSideBar)}` : `tranparent`)};
   &:hover {
     background-color: ${darken(0.1, Colors.colorSideBar)};
   }
 `;
+const SidebarMenuSelected = {
+  background: 'black',
+  color: 'white'
+};
 
 const Sidebar = ({ width, height }) => {
   const [xPosition, setX] = React.useState(-width);
@@ -114,11 +119,7 @@ const Sidebar = ({ width, height }) => {
         }}
       >
         <UserProfile />
-        <SidebarMenu>Home</SidebarMenu>
-        <SidebarMenu>TEST</SidebarMenu>
-        <SidebarMenu>TEST</SidebarMenu>
-        <SidebarMenu>TEST</SidebarMenu>
-        <SidebarMenu>TEST</SidebarMenu>
+        <SidebarMenu />
       </NavBar>
       <ToggleButton onClick={() => toggleMenu()} className='toggle-menu' xPosition={xPosition} />
     </React.Fragment>
@@ -139,13 +140,21 @@ const UserProfile = () => {
   );
 };
 
-const SidebarMenu = ({ children }) => {
+// 나중에 menu 재사용 가능한 컴포넌트로 변경
+const SidebarMenu = ({ children, activeLink }) => {
   return (
-    <SidebarMenuWrap>
-      <Link to={'/'} style={{ color: `${Colors.colorBlack}` }}>
-        {children}
-      </Link>
-    </SidebarMenuWrap>
+    <React.Fragment>
+      <SidebarMenuWrap>
+        <NavLink to={'/'} exact activeStyle={SidebarMenuSelected}></NavLink>
+      </SidebarMenuWrap>
+
+      <SidebarMenuWrap>
+        <NavLink to={'/login'} exact activeStyle={SidebarMenuSelected}>
+          Login
+        </NavLink>
+      </SidebarMenuWrap>
+      <SidebarMenuWrap>test</SidebarMenuWrap>
+    </React.Fragment>
   );
 };
 

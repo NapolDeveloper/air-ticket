@@ -102,11 +102,11 @@ export const SignInput = styled.input`
   }
 `;
 export const ForgotPassword = styled(Description)`
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
   cursor: pointer;
   &:hover {
     color: ${Colors.primaryColor};
-    font-weight: bold;
+    /* font-weight: bold; */
   }
 `;
 
