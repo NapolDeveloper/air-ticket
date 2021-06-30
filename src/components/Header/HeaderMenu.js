@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 // styles
 import Colors from '../../styles/Colors';
 import styled from 'styled-components';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const MenuWrap = styled.div`
   display: flex;
@@ -12,7 +13,27 @@ const MenuWrap = styled.div`
   margin-left: auto;
 `;
 const MenuItem = styled.div`
-  margin: 0 10px;
+  margin: 0 6px;
+  cursor: pointer;
+  position: relative;
+  padding: 7px 4px;
+
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1.5px;
+    background: ${Colors.primaryGradientColor};
+    transition: 0.2s ease-in-out;
+  }
+  &:hover::after {
+    width: 80%;
+    margin-left: -40%;
+    /* transition: all 300ms ease 0s; */
+  }
 `;
 const LoginButton = styled.button`
   color: ${Colors.colorBlack};

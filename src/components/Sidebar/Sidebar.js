@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { open, close, selectIsOpen } from '../../redux/Sidebar/sidebarSlice';
+import { open, close, selectIsOpen, selectSideWidth } from '../../redux/Sidebar/sidebarSlice';
 
 // styles
 import styled from 'styled-components';
@@ -55,6 +55,7 @@ const UserDataWrap = styled.div`
   border-radius: 10px;
   align-items: center;
   background-color: ${Colors.colorGrey};
+  margin-top: 20px;
   margin-bottom: 30px;
   padding: 10px 30px;
 `;
@@ -70,50 +71,51 @@ const UserDes = styled.span`
   color: white;
 `;
 
-const SidebarMenuWrap = styled.div`
+const StyledNavLink = styled(NavLink)`
   width: 100%;
   border-radius: 10px;
-  padding: 15px 7px;
-  transition: 0.2s ease-in-out;
-  cursor: pointer;
-  margin-bottom: 10px;
+  padding: 15px 10px;
+  box-sizing: border-box;
+  display: block;
+  margin: 0 auto;
+  text-align: left;
   color: ${Colors.colorBlack};
-  background-color: ${(props) => (props.active ? `${darken(0.1, Colors.colorSideBar)}` : `tranparent`)};
+  transition: 0.2s ease-in;
+  margin-bottom: 5px;
   &:hover {
+    background-color: ${darken(0.1, Colors.colorSideBar)};
+    padding-left: 15px;
+  }
+
+  &.selected {
+    font-weight: bold;
     background-color: ${darken(0.1, Colors.colorSideBar)};
   }
 `;
-const SidebarMenuSelected = {
-  background: 'black',
-  color: 'white'
-};
 
 const Sidebar = ({ width, height }) => {
-  const [xPosition, setX] = React.useState(-width);
-
   const isOpen = useSelector(selectIsOpen);
+  const sideWidth = useSelector(selectSideWidth);
   const dispatch = useDispatch();
 
   const toggleMenu = () => {
     if (isOpen === false) {
       dispatch(open());
-      setX(0);
     } else {
       dispatch(close());
-      setX(-width);
     }
   };
 
   React.useEffect(() => {
-    setX(-width); // 이게 닫혀있는 상태
+    // setX(-width); // 이게 닫혀있는 상태
     // setX(width);
-  }, []);
+  }, [isOpen]);
 
   return (
     <React.Fragment>
       <NavBar
         style={{
-          transform: `translatex(${xPosition}px)`,
+          transform: `translatex(${sideWidth}px)`,
           width: width,
           minHeight: height
         }}
@@ -121,7 +123,7 @@ const Sidebar = ({ width, height }) => {
         <UserProfile />
         <SidebarMenu />
       </NavBar>
-      <ToggleButton onClick={() => toggleMenu()} className='toggle-menu' xPosition={xPosition} />
+      <ToggleButton onClick={() => toggleMenu()} className='toggle-menu' xPosition={sideWidth} />
     </React.Fragment>
   );
 };
@@ -141,19 +143,18 @@ const UserProfile = () => {
 };
 
 // 나중에 menu 재사용 가능한 컴포넌트로 변경
-const SidebarMenu = ({ children, activeLink }) => {
+const SidebarMenu = () => {
   return (
     <React.Fragment>
-      <SidebarMenuWrap>
-        <NavLink to={'/'} exact activeStyle={SidebarMenuSelected}></NavLink>
-      </SidebarMenuWrap>
-
-      <SidebarMenuWrap>
-        <NavLink to={'/login'} exact activeStyle={SidebarMenuSelected}>
-          Login
-        </NavLink>
-      </SidebarMenuWrap>
-      <SidebarMenuWrap>test</SidebarMenuWrap>
+      <StyledNavLink activeClassName='selected' exact to='/'>
+        Home
+      </StyledNavLink>
+      <StyledNavLink activeClassName='selected' exact to='/login'>
+        Login test
+      </StyledNavLink>
+      <StyledNavLink activeClassName='selected' exact to='/test'>
+        test
+      </StyledNavLink>
     </React.Fragment>
   );
 };

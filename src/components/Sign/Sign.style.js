@@ -123,11 +123,13 @@ export const SignButton = styled.button`
   margin-top: 20px;
 `;
 export const SignInButton = styled(SignButton)`
-  transition: 1s ease-in-out;
-  background: ${Colors.primaryGradientColor};
+  transition: 0.2s ease-in-out;
+  /* background: ${Colors.primaryGradientColor}; */
+  background-color: ${Colors.primaryColor};
   &:hover {
-    /* background-color: ${lighten(0.1, Colors.primaryColor)}; */
-    background: linear-gradient(to right, ${darken(0.03, Colors.primaryColor)}, ${darken(0.1, Colors.colorGradient)});
+    background-color: ${darken(0.1, Colors.primaryColor)};
+    /* background-color: white; */
+    /* background: linear-gradient(to right, ${darken(0.03, Colors.primaryColor)}, ${darken(0.1, Colors.colorGradient)}); */
   }
 `;
 
