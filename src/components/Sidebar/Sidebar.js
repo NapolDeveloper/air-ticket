@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { open, close, selectIsOpen, selectSideWidth } from '../../redux/Sidebar/sidebarSlice';
 
@@ -21,7 +21,7 @@ const NavBar = styled.div`
   padding: 40px 10px;
   /* background-color: ${Colors.colorBlack}; */
   background-color: ${Colors.colorSideBar};
-  transition: 0.8s ease;
+  transition: 0.4s ease;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07), 0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07), 0 16px 32px rgba(0, 0, 0, 0.07),
     0 32px 64px rgba(0, 0, 0, 0.07);
 `;
@@ -39,7 +39,7 @@ const ToggleButton = styled.button`
   border-color: rgba(64, 194, 133, 0.693);
   border-left: 0;
   cursor: pointer;
-  transition: 0.8s ease;
+  transition: 0.4s ease;
   transform: ${(props) => `translate(${props.xPosition + 300}px, 30vh)`};
   &:hover {
     background-color: ${lighten(0.1, Colors.primaryColor)};
@@ -81,7 +81,8 @@ const StyledNavLink = styled(NavLink)`
   text-align: left;
   color: ${Colors.colorBlack};
   transition: 0.2s ease-in;
-  margin-bottom: 5px;
+  margin-top: 3px;
+  margin-bottom: 3px;
   &:hover {
     background-color: ${darken(0.1, Colors.colorSideBar)};
     padding-left: 15px;
@@ -91,6 +92,14 @@ const StyledNavLink = styled(NavLink)`
     font-weight: bold;
     background-color: ${darken(0.1, Colors.colorSideBar)};
   }
+`;
+
+const DivideStroke = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: ${Colors.colorGrey};
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
 
 const Sidebar = ({ width, height }) => {
@@ -146,6 +155,10 @@ const UserProfile = () => {
 const SidebarMenu = () => {
   return (
     <React.Fragment>
+      <StyledNavLink activeClassName='selected' exact to='/login'>
+        로그인
+      </StyledNavLink>
+      <DivideStroke />
       <StyledNavLink activeClassName='selected' exact to='/'>
         Home
       </StyledNavLink>
