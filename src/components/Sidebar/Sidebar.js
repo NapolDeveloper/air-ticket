@@ -115,10 +115,10 @@ const Sidebar = ({ width, height }) => {
     }
   };
 
-  React.useEffect(() => {
-    // setX(-width); // 이게 닫혀있는 상태
-    // setX(width);
-  }, [isOpen]);
+  // React.useEffect(() => {
+  //   // setX(-width); // 이게 닫혀있는 상태
+  //   // setX(width);
+  // }, [isOpen]);
 
   return (
     <React.Fragment>
@@ -132,7 +132,7 @@ const Sidebar = ({ width, height }) => {
         <UserProfile />
         <SidebarMenu />
       </NavBar>
-      <ToggleButton onClick={() => toggleMenu()} className='toggle-menu' xPosition={sideWidth} />
+      {/* <ToggleButton onClick={() => toggleMenu()} className='toggle-menu' xPosition={sideWidth} /> */}
     </React.Fragment>
   );
 };
