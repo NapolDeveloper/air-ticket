@@ -11,14 +11,10 @@ import styled from 'styled-components';
 import Colors from '../../styles/Colors';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
-const HeaderHamburger = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
+const Hamburger = styled(GiHamburgerMenu)`
   margin-right: 20px;
-  font-size: 20px;
-  /* line-height: 22px; */
+  font-size: 24px;
+  padding: 2px;
   border-radius: 5px;
   z-index: 99;
   cursor: pointer;
@@ -59,9 +55,7 @@ const Header = () => {
   };
   return (
     <HeaderWrap>
-      <HeaderHamburger onClick={handleToggle}>
-        <GiHamburgerMenu />
-      </HeaderHamburger>
+      <Hamburger onClick={handleToggle} />
       <Link to={'/'}>
         <HeaderLogo>AIR-TICKET</HeaderLogo>
       </Link>

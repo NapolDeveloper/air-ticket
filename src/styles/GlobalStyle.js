@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
   }
-  body{
+  body, html, #root {
     width: 100%;
     height: 100%;
   }
@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
   input:focus{
     outline: none;
   }
+
 `;
 
 export default GlobalStyle;

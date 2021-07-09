@@ -17,7 +17,7 @@ const Login = () => {
   const [toggleSign, setToggleSign] = useState(false);
   const [toggleModal, setToggleModal] = useState(false);
   return (
-    <div>
+    <S.Container>
       <S.LoginContainer>
         <LoginLeftBox toggleSign={toggleSign} setToggleSign={setToggleSign} />
         {/* active - slideUp animation check props */}
@@ -28,7 +28,7 @@ const Login = () => {
           Air Ticket과 함께 편안한 여행 되세요!
         </Modal>
       ) : null}
-    </div>
+    </S.Container>
   );
 };
 

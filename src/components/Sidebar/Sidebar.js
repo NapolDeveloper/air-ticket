@@ -1,7 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+
+// redux
 import { open, close, selectIsOpen, selectSideWidth } from '../../redux/Sidebar/sidebarSlice';
+import { selectIsLogged, selectUserData } from '../../redux/User/userSlice';
 
 // styles
 import styled from 'styled-components';
@@ -10,6 +13,7 @@ import { lighten, darken } from 'polished';
 import { BsPeopleCircle } from 'react-icons/bs';
 
 const NavBar = styled.div`
+  z-index: 99;
   height: 100% !important;
   display: flex;
   flex-direction: column;
@@ -24,26 +28,6 @@ const NavBar = styled.div`
   transition: 0.4s ease;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07), 0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07), 0 16px 32px rgba(0, 0, 0, 0.07),
     0 32px 64px rgba(0, 0, 0, 0.07);
-`;
-
-const ToggleButton = styled.button`
-  height: 50px;
-  border-top-right-radius: 10rem;
-  border-bottom-right-radius: 9rem;
-  width: 10px;
-  position: absolute;
-  outline: none;
-  z-index: 1;
-  /* background-color: rgba(64, 194, 133, 0.693); */
-  background-color: ${Colors.primaryColor};
-  border-color: rgba(64, 194, 133, 0.693);
-  border-left: 0;
-  cursor: pointer;
-  transition: 0.4s ease;
-  transform: ${(props) => `translate(${props.xPosition + 300}px, 30vh)`};
-  &:hover {
-    background-color: ${lighten(0.1, Colors.primaryColor)};
-  }
 `;
 
 // UserProfile style
@@ -103,22 +87,17 @@ const DivideStroke = styled.div`
 `;
 
 const Sidebar = ({ width, height }) => {
-  const isOpen = useSelector(selectIsOpen);
   const sideWidth = useSelector(selectSideWidth);
+
   const dispatch = useDispatch();
 
-  const toggleMenu = () => {
-    if (isOpen === false) {
-      dispatch(open());
-    } else {
-      dispatch(close());
-    }
-  };
-
-  // React.useEffect(() => {
-  //   // setX(-width); // 이게 닫혀있는 상태
-  //   // setX(width);
-  // }, [isOpen]);
+  // const toggleMenu = () => {
+  //   if (isOpen === false) {
+  //     dispatch(open());
+  //   } else {
+  //     dispatch(close());
+  //   }
+  // };
 
   return (
     <React.Fragment>
@@ -132,12 +111,13 @@ const Sidebar = ({ width, height }) => {
         <UserProfile />
         <SidebarMenu />
       </NavBar>
-      {/* <ToggleButton onClick={() => toggleMenu()} className='toggle-menu' xPosition={sideWidth} /> */}
     </React.Fragment>
   );
 };
 
 const UserProfile = () => {
+  const isLogged = useSelector(selectIsLogged);
+  const userData = useSelector(selectUserData);
   return (
     <UserDataWrap>
       {/* <UserIcon> */}
@@ -145,7 +125,7 @@ const UserProfile = () => {
       {/* </UserIcon> */}
       {/* 후에 리덕스에서 유저의 데이터를 받아와서 넣어줄 예정 */}
       <UserData>
-        <UserDes>Name : 김현재</UserDes>
+        <UserDes>{isLogged ? `이름 : ${userData.name}` : `로그인해주세요`}</UserDes>
       </UserData>
     </UserDataWrap>
   );
@@ -153,21 +133,22 @@ const UserProfile = () => {
 
 // 나중에 menu 재사용 가능한 컴포넌트로 변경
 const SidebarMenu = () => {
+  const isLogged = useSelector(selectIsLogged);
   return (
     <React.Fragment>
-      <StyledNavLink activeClassName='selected' exact to='/login'>
-        로그인
-      </StyledNavLink>
+      {isLogged ? null : (
+        <StyledNavLink activeClassName='selected' exact to='/login'>
+          로그인
+        </StyledNavLink>
+      )}
       <DivideStroke />
       <StyledNavLink activeClassName='selected' exact to='/'>
         Home
       </StyledNavLink>
-      <StyledNavLink activeClassName='selected' exact to='/login'>
-        Login test
-      </StyledNavLink>
       <StyledNavLink activeClassName='selected' exact to='/test'>
         test
       </StyledNavLink>
+      <DivideStroke />
     </React.Fragment>
   );
 };

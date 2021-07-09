@@ -14,10 +14,15 @@ export const slideUp = keyframes`
   }
 `;
 
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+`;
 export const LoginContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   width: 768px;
   height: 480px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
@@ -28,7 +33,6 @@ export const LoginContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: -1;
 `;
 
 // Box
