@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+// redux
 import { open, close, selectIsOpen } from '../../redux/Sidebar/sidebarSlice';
 
 // components

@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+// redux
+import { selectIsLogged, login, logout } from '../../redux/User/userSlice';
 
 // styles
 import Colors from '../../styles/Colors';
@@ -35,7 +39,8 @@ const MenuItem = styled.div`
     /* transition: all 300ms ease 0s; */
   }
 `;
-const LoginButton = styled.button`
+
+const Button = styled.button`
   color: ${Colors.colorBlack};
   font-size: 13px;
   width: 75px;
@@ -67,15 +72,32 @@ const LoginButton = styled.button`
   }
 `;
 
-const HeaderMenu = () => {
+const StyleLoginButton = styled(Button)``;
+const StyleProfileButton = styled(Button)``;
+
+const HeaderMenu = (props) => {
+  const isLogged = useSelector(selectIsLogged);
   return (
     <MenuWrap>
       <MenuItem>test1</MenuItem>
       <MenuItem>test2</MenuItem>
-      <Link to={'/login'}>
-        <LoginButton>로그인</LoginButton>
-      </Link>
+      {isLogged ? <ProfileButton /> : <LoginButton />}
     </MenuWrap>
+  );
+};
+
+const LoginButton = () => {
+  return (
+    <Link to={'/login'}>
+      <StyleLoginButton>로그인</StyleLoginButton>
+    </Link>
+  );
+};
+const ProfileButton = () => {
+  return (
+    <Link to={'/profile'}>
+      <StyleProfileButton>프로필</StyleProfileButton>
+    </Link>
   );
 };
 
