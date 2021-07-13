@@ -32,7 +32,7 @@ const HeaderWrap = styled.div`
   width: 100%;
   height: 60px;
   padding: 0 20px;
-  margin-bottom: 20px;
+  margin: 10px 0;
   /* background-color: #efefef; */
   /* border-bottom: 1px solid ${Colors.colorGrey}; */
 `;

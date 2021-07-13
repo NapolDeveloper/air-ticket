@@ -8,7 +8,8 @@ const CardContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 1rem;
+  flex: 1 1 1;
+  margin-bottom: 1rem;
   border-radius: 5px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   cursor: pointer;
@@ -53,12 +54,13 @@ const CardDesPrice = styled.span`
 `;
 
 const LocationCard = (props) => {
+  const { image, title, price } = props;
   return (
     <CardContainer>
-      <Card image={props.image}>
-        <CardImage />
+      <Card>
+        <CardImage image={image} />
       </Card>
-      <CardDescription title={props.title} price={props.price} />
+      <CardDescription title={title} price={price} />
     </CardContainer>
   );
 };
