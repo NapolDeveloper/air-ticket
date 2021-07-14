@@ -8,7 +8,7 @@ const CardContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  flex: 1 1 1;
+  flex: 1 1 auto;
   margin-bottom: 1rem;
   border-radius: 5px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
