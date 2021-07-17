@@ -32,12 +32,12 @@ const HeaderWrap = styled.div`
   width: 100%;
   height: 60px;
   padding: 0 20px;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   /* background-color: #efefef; */
   /* border-bottom: 1px solid ${Colors.colorGrey}; */
 `;
 
-const HeaderLogo = styled.span`
+const HeaderLogo = styled.div`
   font-weight: bold;
   color: ${Colors.colorBlack};
   /* width: 30px; */

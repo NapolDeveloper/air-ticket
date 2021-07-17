@@ -145,8 +145,8 @@ const SidebarMenu = () => {
       <StyledNavLink activeClassName='selected' exact to='/'>
         Home
       </StyledNavLink>
-      <StyledNavLink activeClassName='selected' exact to='/test'>
-        test
+      <StyledNavLink activeClassName='selected' exact to='/product'>
+        항공편 예약
       </StyledNavLink>
       <DivideStroke />
     </React.Fragment>

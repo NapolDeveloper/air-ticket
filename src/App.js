@@ -1,18 +1,18 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import React from 'react';
 import styled from 'styled-components';
 
-// components
+// components - module
 import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 
-// components - Sign
+// components
 import Home from './components/Home/Home';
 import Login from './components/Sign/Login';
+import ProductList from './components/ProductList/ProductList';
 
 // styles
 import GlobalStyle from './styles/GlobalStyle';
-import React from 'react';
 
 const Container = styled.div`
   width: 100%;
@@ -22,24 +22,33 @@ const Container = styled.div`
   flex-direction: column;
   z-index: -99;
 `;
+const Content = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: aqua;
+  padding: 20px;
+`;
 
 function App() {
   return (
-    // <React.Fragment>
-    <Container>
-      <GlobalStyle />
-      <Router>
-        <Sidebar width={300} heigth={'100vh'} />
-        <Header />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          {/* 로그인, 회원가입 */}
-          {/* render를 이용할 때는 props를 전달할 때 */}
-          <Route exact path='/login' component={Login} />
-        </Switch>
-      </Router>
-    </Container>
-    // </React.Fragment>
+    <React.Fragment>
+      <Container>
+        <GlobalStyle />
+        <Router>
+          <Sidebar width={300} heigth={'100vh'} />
+          <Header />
+          <Content>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              {/* 로그인, 회원가입 */}
+              {/* render를 이용할 때는 props를 전달할 때 */}
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/product' component={ProductList} />
+            </Switch>
+          </Content>
+        </Router>
+      </Container>
+    </React.Fragment>
   );
 }
 

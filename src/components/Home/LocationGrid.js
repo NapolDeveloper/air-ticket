@@ -9,7 +9,7 @@ const Container = styled.div`
   /* padding: 5px; */
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  
   /* justify-content: space-around; */
   grid-template-columns: repeat(auto-fill, minmax(300px, auto));
 `;

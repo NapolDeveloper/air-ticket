@@ -17,10 +17,13 @@ const MenuWrap = styled.div`
   margin-left: auto;
 `;
 const MenuItem = styled.div`
+  font-size: 14px;
   margin: 0 6px;
   cursor: pointer;
   position: relative;
   padding: 7px 4px;
+  text-decoration: none;
+  color: black;
 
   &::after {
     display: block;
@@ -29,7 +32,7 @@ const MenuItem = styled.div`
     bottom: 0;
     left: 50%;
     width: 0;
-    height: 1.5px;
+    height: 1.3px;
     background: ${Colors.primaryGradientColor};
     transition: 0.2s ease-in-out;
   }
@@ -77,26 +80,20 @@ const StyleProfileButton = styled(Button)``;
 
 const HeaderMenu = (props) => {
   const isLogged = useSelector(selectIsLogged);
-  return (
-    <MenuWrap>
-      <MenuItem>test1</MenuItem>
-      <MenuItem>test2</MenuItem>
-      {isLogged ? <ProfileButton /> : <LoginButton />}
-    </MenuWrap>
-  );
+  return <MenuWrap>{isLogged ? <ProfileButton /> : <LoginButton />}</MenuWrap>;
 };
 
 const LoginButton = () => {
   return (
     <Link to={'/login'}>
-      <StyleLoginButton>로그인</StyleLoginButton>
+      <MenuItem>로그인</MenuItem>
     </Link>
   );
 };
 const ProfileButton = () => {
   return (
     <Link to={'/profile'}>
-      <StyleProfileButton>프로필</StyleProfileButton>
+      <MenuItem>프로필</MenuItem>
     </Link>
   );
 };
