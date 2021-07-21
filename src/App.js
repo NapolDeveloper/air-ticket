@@ -9,7 +9,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 // components
 import Home from './components/Home/Home';
 import Login from './components/Sign/Login';
-import ProductList from './components/ProductList/ProductList';
+import Product from './components/Product/Product';
 
 // styles
 import GlobalStyle from './styles/GlobalStyle';
@@ -43,7 +43,7 @@ function App() {
               {/* 로그인, 회원가입 */}
               {/* render를 이용할 때는 props를 전달할 때 */}
               <Route exact path='/login' component={Login} />
-              <Route exact path='/product' component={ProductList} />
+              <Route exact path='/product' component={Product} />
             </Switch>
           </Content>
         </Router>

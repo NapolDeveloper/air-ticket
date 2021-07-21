@@ -5,6 +5,6 @@
 ---
 
 - React js
-- Styled Component
+- Styled Components
 - redux & redux-toolkit
 - react-router-dom
