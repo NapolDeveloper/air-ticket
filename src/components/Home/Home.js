@@ -26,7 +26,7 @@ const Home = () => {
     <Container>
       <Title>내 안에 숨어 있는 여행 욕구를 깨워보세요</Title>
       <Describe>인기 여행지를 발견해보세요.</Describe>
-      {/* <LocationGrid /> */}
+      <LocationGrid />
     </Container>
   );
 };

@@ -4,11 +4,13 @@ import styled from 'styled-components';
 import Colors from '../../styles/Colors';
 
 const CardContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, auto));
+  /* display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  flex: 1 1 auto;
+  flex: 1 1 auto; */
   margin-bottom: 1rem;
   border-radius: 5px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
