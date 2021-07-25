@@ -1,7 +1,9 @@
 import React from 'react';
 
-const ProductHeader = () => {
-  return <div>header</div>;
+//
+
+const ProductHeader = ({ date }) => {
+  return <div>{date}</div>;
 };
 
 export default ProductHeader;

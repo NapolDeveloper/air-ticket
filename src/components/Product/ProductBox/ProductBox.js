@@ -5,6 +5,7 @@ import Colors from '../../../styles/Colors';
 
 // components
 import ProductHeader from '../ProductHeader/ProductHeader';
+import ProductList from '../ProductList/ProductList';
 
 const Box = styled.div`
   width: 600px;
@@ -12,10 +13,11 @@ const Box = styled.div`
   background-color: white;
 `;
 
-const ProductBox = () => {
+const ProductBox = ({ date }) => {
   return (
     <Box>
-      <ProductHeader />
+      <ProductHeader date={date} />
+      <ProductList />
     </Box>
   );
 };
