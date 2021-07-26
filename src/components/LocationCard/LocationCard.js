@@ -42,6 +42,7 @@ const CardDeswrap = styled.div`
   width: 100%;
   padding: 10px 15px;
   display: flex;
+  /* background-color: ${Colors.colorWhite}; */
   /* align-items: center; */
   /* justify-content: center; */
   flex-direction: column;

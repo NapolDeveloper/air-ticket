@@ -21,10 +21,32 @@ const TicketData = ['일반석', '할인석', '특가석', '특별석'];
 
 const List = [
   {
+    id: 0,
     airline: AirlineData[0],
     ticket: TicketData[0],
     seat: 4,
     price: 10000
+  },
+  {
+    id: 1,
+    airline: AirlineData[1],
+    ticket: TicketData[1],
+    seat: 4,
+    price: 32000
+  },
+  {
+    id: 2,
+    airline: AirlineData[2],
+    ticket: TicketData[2],
+    seat: 4,
+    price: 54000
+  },
+  {
+    id: 3,
+    airline: AirlineData[2],
+    ticket: TicketData[3],
+    seat: 9,
+    price: 100000
   }
 ];
 
@@ -32,7 +54,9 @@ const ProductBox = ({ date }) => {
   return (
     <Box>
       <ProductHeader date={date} />
-      <ProductList />
+      {List.map((list) => {
+        return <ProductList key={list.id} airline={list.airline} ticket={list.ticket} seat={list.seat} price={list.price} />;
+      })}
     </Box>
   );
 };
