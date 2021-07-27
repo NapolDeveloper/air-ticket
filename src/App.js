@@ -25,7 +25,7 @@ const Container = styled.div`
 const Content = styled.div`
   width: 100%;
   height: 100%;
-  background-color: aqua;
+  /* background-color: aqua; */
   padding: 20px;
 `;
 

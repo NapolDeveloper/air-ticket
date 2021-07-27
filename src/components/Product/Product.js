@@ -2,10 +2,15 @@ import React from 'react';
 
 // components
 import ProductBox from './ProductBox/ProductBox';
-import ProductList from './ProductList/ProductList';
+import ProductDate from './ProductDate/ProductDate';
 
 const Product = () => {
-  return <ProductBox date={`04월1일`} />;
+  return (
+    <React.Fragment>
+      <ProductDate />
+      <ProductBox date={`2021년 04월 1일`} />
+    </React.Fragment>
+  );
 };
 
 export default Product;
